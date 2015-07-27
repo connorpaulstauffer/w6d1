@@ -26,7 +26,8 @@
       // sqrt(length^2 - dx^2) = dy
       var dx = (Math.random() * length * 2) - length;
       var dy = Math.sqrt(Math.pow(length, 2) - Math.pow(dx, 2));
-      return [dx, dy];
+      var randomYDir = [-1, 1];
+      return [dx, (dy * randomYDir[Math.floor(Math.random() * randomYDir.length)])];
     }
   };
 

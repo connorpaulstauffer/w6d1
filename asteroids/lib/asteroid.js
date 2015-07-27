@@ -1,6 +1,5 @@
 (function() {
   var Asteroids = window.Asteroids = window.Asteroids || {};
-  Asteroids.Util.inherits(Asteroids.Asteroid, Asteroids.MovingObject);
 
   var Asteroid = Asteroids.Asteroid = function(options) {
     var randomVel = (Math.random() * 5 * 2) - 5;
@@ -9,6 +8,8 @@
     options.vel = Asteroids.Util.randomVec(randomVel);
     Asteroids.MovingObject.call(this, options);
   };
+
+  Asteroids.Util.inherits(Asteroids.Asteroid, Asteroids.MovingObject);
 
   Asteroid.COLOR = "#666666";
   Asteroid.RADIUS = 20;

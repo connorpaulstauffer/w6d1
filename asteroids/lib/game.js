@@ -33,7 +33,7 @@
     });
   };
 
-  Game.DIM_X = 500;
-  Game.DIM_Y = 500;
+  Game.DIM_X = window.innerWidth;
+  Game.DIM_Y = window.innerHeight;
   Game.NUM_ASTEROIDS = 20;
 })();

@@ -19,11 +19,17 @@
     </style>
   </head>
   <body>
-    <canvas></canvas>
+    <canvas id="game-canvas"></canvas>
     <script type="text/javascript">
-      var canvasEl = document.getElementsByTagName("canvas")[0];
+      var canvasEl = document.getElementById("game-canvas");
       canvasEl.height = window.innerHeight;
       canvasEl.width = window.innerWidth;
+
+      var ctx = canvasEl.getContext('2d');
+      var game = new Asteroids.Game();
+      var gameView = new Asteroids.GameView(game, ctx);
+
+      gameView.start();
     </script>
 
   </body>
