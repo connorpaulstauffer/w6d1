@@ -28,5 +28,24 @@ var curriedSum = function(numArgs) {
   return _curriedSum;
 };
 
-var someSum = curriedSum(4);
-console.log(someSum(5)(30)(20)(1)); // => 56
+// var someSum = curriedSum(4);
+// console.log(someSum(5)(30)(20)(1)); // => 56
+
+Function.prototype.curry = function (numArgs) {
+  var fn = this;
+  var args = [];
+
+  var _curry = function(arg) {
+    args.push(arg);
+    if(args.length === numArgs) {
+      return fn.apply(null, args);
+    } else {
+      return _curry;
+    }
+  };
+
+  return _curry;
+};
+
+// var s1 = sum.curry(4);
+// console.log(s1(1)(2)(3)(4));
