@@ -15,3 +15,4 @@ Function.prototype.myBind = function (obj) {
     return fn.apply(obj, myBindArgs.slice(1).concat(applyArgs));
   };
 };
+ 
