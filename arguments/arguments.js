@@ -5,4 +5,13 @@ var sum = function() {
   return sumArgs;
 };
 
-console.log(sum(3, 4, 5));
+// console.log(sum(3, 4, 5));
+
+Function.prototype.myBind = function (obj) {
+  var fn = this;
+  var myBindArgs = [].slice.call(arguments);
+  return function () {
+    var applyArgs = [].slice.call(arguments);
+    return fn.apply(obj, myBindArgs.slice(1).concat(applyArgs));
+  };
+};
