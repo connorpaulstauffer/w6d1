@@ -6,6 +6,7 @@
     this.vel = options.vel;
     this.radius = options.radius;
     this.color = options.color;
+    this.game = options.game;
   };
 
   MovingObject.prototype.draw = function (ctx) {
@@ -31,7 +32,9 @@
     var velX = this.vel[0];
     var velY = this.vel[1];
 
-    this.pos[0] += velX;
-    this.pos[1] += velY;
+    var newVelX = this.pos[0] + velX;
+    var newVelY = this.pos[1] + velY;
+
+    this.pos = this.game.wrap([newVelX, newVelY]);
   };
 })();
