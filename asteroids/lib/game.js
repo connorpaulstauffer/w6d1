@@ -53,17 +53,19 @@
   Game.prototype.checkCollisions = function () {
     for (var i = 0; i < this.asteroids.length; i++) {
       for (var j = i + 1; j < this.asteroids.length; j++) {
+        if (this.asteroids[i] === null || this.asteroids[j] === null) {
+          continue;
+        }
+
         if (this.asteroids[i].isCollidedWith(this.asteroids[j])) {
           this.asteroids[i].collideWith(this.asteroids[j]);
-
-          this.asteroids = this.asteroids.filter(function (val) {
-            return val !== null;
-          });
-
-          return;
         }
       }
     }
+
+    this.asteroids = this.asteroids.filter(function (val) {
+      return val !== null;
+    });
   };
 
   Game.prototype.remove = function(asteroid) {
