@@ -40,6 +40,11 @@
 
   MovingObject.prototype.isCollidedWith = function (otherObject) {
     var sumRadii = this.radius + otherObject.radius;
-    return (Asteroids.Util.dist(this.pos, otherObject.pos) < sumRadii); 
+    return (Asteroids.Util.dist(this.pos, otherObject.pos) < sumRadii);
+  };
+
+  MovingObject.prototype.collideWith = function (otherObject) {
+    this.game.remove(this);
+    this.game.remove(otherObject);
   };
 })();

@@ -52,15 +52,25 @@
 
   Game.prototype.checkCollisions = function () {
     for (var i = 0; i < this.asteroids.length; i++) {
-      for (var j = 0; j < this.asteroids.length; j++) {
-        if (i !== j && this.asteroids[i].isCollidedWith(this.asteroids[j])) {
-          alert("COLLISION!");
+      for (var j = i + 1; j < this.asteroids.length; j++) {
+        if (this.asteroids[i].isCollidedWith(this.asteroids[j])) {
+          this.asteroids[i].collideWith(this.asteroids[j]);
+
+          this.asteroids = this.asteroids.filter(function (val) {
+            return val !== null;
+          });
+
+          return;
         }
       }
     }
   };
 
+  Game.prototype.remove = function(asteroid) {
+    this.asteroids[this.asteroids.indexOf(asteroid)] = null;
+  };
+
   Game.DIM_X = window.innerWidth;
   Game.DIM_Y = window.innerHeight;
-  Game.NUM_ASTEROIDS = 20;
+  Game.NUM_ASTEROIDS = 200;
 })();
