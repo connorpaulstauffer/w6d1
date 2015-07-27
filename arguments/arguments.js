@@ -5,8 +5,6 @@ var sum = function() {
   return sumArgs;
 };
 
-// console.log(sum(3, 4, 5));
-
 Function.prototype.myBind = function (obj) {
   var fn = this;
   var myBindArgs = [].slice.call(arguments);
@@ -15,4 +13,20 @@ Function.prototype.myBind = function (obj) {
     return fn.apply(obj, myBindArgs.slice(1).concat(applyArgs));
   };
 };
- 
+
+var curriedSum = function(numArgs) {
+  var numbers = [];
+  var _curriedSum = function(num) {
+    numbers.push(num);
+    if (numbers.length === numArgs) {
+      return sum.apply(null, numbers); // ?????
+    } else {
+      return _curriedSum;
+    }
+  };
+
+  return _curriedSum;
+};
+
+var someSum = curriedSum(4);
+console.log(someSum(5)(30)(20)(1)); // => 56
