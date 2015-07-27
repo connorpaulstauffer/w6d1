@@ -37,4 +37,9 @@
 
     this.pos = this.game.wrap([newVelX, newVelY]);
   };
+
+  MovingObject.prototype.isCollidedWith = function (otherObject) {
+    var sumRadii = this.radius + otherObject.radius;
+    return (Asteroids.Util.dist(this.pos, otherObject.pos) < sumRadii); 
+  };
 })();
