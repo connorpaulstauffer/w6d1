@@ -2,8 +2,16 @@
   var Asteroids = window.Asteroids = window.Asteroids || {};
 
   var Game = Asteroids.Game = function() {
+    this.ship = new Asteroids.Ship({
+      pos: Asteroids.Game.prototype.randomPos(),
+      game: this
+    });
     this.asteroids = [];
     this.addAsteroids(Game.NUM_ASTEROIDS);
+  };
+
+  Game.prototype.allObjects = function () {
+    return [this.ship].concat(this.asteroids);
   };
 
   Game.prototype.step = function () {
@@ -28,15 +36,13 @@
 
   Game.prototype.draw = function(ctx) {
     ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
-    this.asteroids.forEach(function (asteroid) {
-      asteroid.draw(ctx);
+    this.allObjects().forEach(function (obj) {
+      obj.draw(ctx);
     });
   };
 
   Game.prototype.moveObjects = function() {
-    this.asteroids.forEach(function (asteroid) {
-      asteroid.move();
-    });
+    this.allObjects().forEach(function (obj) { obj.move(); });
   };
 
   Game.prototype.wrap = function(pos) {
