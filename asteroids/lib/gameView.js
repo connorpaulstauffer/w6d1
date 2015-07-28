@@ -13,6 +13,7 @@
     key('a', function () { theGame.ship.power([-1, 0]); });
     key('s', function () { theGame.ship.power([0, 1]); });
     key('d', function () { theGame.ship.power([1, 0]); });
+    key('space', function() { theGame.ship.fireBullet(); });
   };
 
   GameView.prototype.start = function () {

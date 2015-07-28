@@ -40,9 +40,6 @@
 
   MovingObject.prototype.isCollidedWith = function (otherObject) {
     var sumRadii = this.radius + otherObject.radius;
-    if (typeof this === "Ship") {
-      console.log(Asteroids.Util.dist(this.pos, otherObject.pos));
-    }
     return (Asteroids.Util.dist(this.pos, otherObject.pos) < sumRadii);
   };
 

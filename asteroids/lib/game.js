@@ -6,12 +6,13 @@
       pos: Asteroids.Game.prototype.randomPos(),
       game: this
     });
+    this.bullets = [];
     this.asteroids = [];
     this.addAsteroids(Game.NUM_ASTEROIDS);
   };
 
   Game.prototype.allObjects = function () {
-    return [this.ship].concat(this.asteroids);
+    return [this.ship].concat(this.bullets).concat(this.asteroids);
   };
 
   Game.prototype.step = function () {
@@ -26,6 +27,10 @@
       opts.game = this;
       this.asteroids.push(new Asteroids.Asteroid(opts));
     }
+  };
+
+  Game.prototype.add = function(obj) {
+    this.bullets.push(obj);
   };
 
   Game.prototype.randomPos = function() {

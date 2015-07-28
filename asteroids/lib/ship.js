@@ -24,6 +24,18 @@
     this.vel[1] += impulse[1];
   };
 
+  Ship.prototype.fireBullet = function () {
+    var bulletVelX = this.vel[0] * 1.3;
+    var bulletVelY = this.vel[1] * 1.3;
+    var bulletOpts = {
+      vel: [bulletVelX, bulletVelY],
+      pos: this.pos,
+      game: this.game
+    };
+
+    this.game.add(new Asteroids.Bullet(bulletOpts));
+  };
+
   Ship.RADIUS = 10;
   Ship.COLOR = "#994422";
 
