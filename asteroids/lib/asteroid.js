@@ -9,6 +9,10 @@
     Asteroids.MovingObject.call(this, options);
   };
 
+  Asteroid.prototype.collideWith = function(otherObject) {
+
+  };
+
   Asteroids.Util.inherits(Asteroids.Asteroid, Asteroids.MovingObject);
 
   Asteroid.COLOR = "#666666";

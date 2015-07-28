@@ -57,14 +57,15 @@
   };
 
   Game.prototype.checkCollisions = function () {
-    for (var i = 0; i < this.asteroids.length; i++) {
-      for (var j = i + 1; j < this.asteroids.length; j++) {
-        if (this.asteroids[i] === null || this.asteroids[j] === null) {
+    var allObjs = this.allObjects();
+    for (var i = 0; i < allObjs.length; i++) {
+      for (var j = i + 1; j < allObjs.length; j++) {
+        if (allObjs[i] === null || allObjs[j] === null) {
           continue;
         }
 
-        if (this.asteroids[i].isCollidedWith(this.asteroids[j])) {
-          this.asteroids[i].collideWith(this.asteroids[j]);
+        if (allObjs[i].isCollidedWith(allObjs[j])) {
+          allObjs[i].collideWith(allObjs[j]);
         }
       }
     }
@@ -75,10 +76,10 @@
   };
 
   Game.prototype.remove = function(asteroid) {
-    this.asteroids[this.asteroids.indexOf(asteroid)] = null;
+    this.allObjects()[this.allObjects().indexOf(asteroid)] = null;
   };
 
   Game.DIM_X = window.innerWidth;
   Game.DIM_Y = window.innerHeight;
-  Game.NUM_ASTEROIDS = 200;
+  Game.NUM_ASTEROIDS = 20;
 })();
