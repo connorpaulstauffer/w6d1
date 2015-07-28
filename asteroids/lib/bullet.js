@@ -5,12 +5,13 @@
     options.radius = Bullet.RADIUS;
     options.color = Bullet.COLOR;
     Asteroids.MovingObject.call(this, options);
+    this.isWrappable = false;
   };
   Asteroids.Util.inherits(Asteroids.Bullet, Asteroids.MovingObject);
 
   Bullet.prototype.collideWith = function (otherObj) {
-    if (typeof (otherObj) === "Asteroid") {
-
+    if (otherObj instanceof (Asteroids.Asteroid)) {
+      this.game.removeAsteroid(otherObj);
     }
   };
 

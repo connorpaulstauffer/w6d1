@@ -80,11 +80,25 @@
     });
   };
 
-  Game.prototype.remove = function(asteroid) {
-    this.allObjects()[this.allObjects().indexOf(asteroid)] = null;
+  Game.prototype.removeAsteroid = function(asteroid) {
+    this.asteroids[this.asteroids.indexOf(asteroid)] = null;
+    this.asteroids = this.asteroids.filter(function (val) {
+      return val !== null;
+    });
+  };
+
+  Game.prototype.removeBullet = function(bullet) {
+    this.bullets[this.bullets.indexOf(bullet)] = null;
+    this.bullets = this.bullets.filter(function (val) {
+      return val !== null;
+    });
+  };
+
+  Game.prototype.isOutOfBounds = function(pos) {
+    return pos[0] > Game.DIM_X || pos[0] < 0 || pos[1] > Game.DIM_Y || pos[1] < 0;
   };
 
   Game.DIM_X = window.innerWidth;
   Game.DIM_Y = window.innerHeight;
-  Game.NUM_ASTEROIDS = 20;
+  Game.NUM_ASTEROIDS = 10;
 })();

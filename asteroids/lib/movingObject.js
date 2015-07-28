@@ -7,6 +7,7 @@
     this.radius = options.radius;
     this.color = options.color;
     this.game = options.game;
+    this.isWrappable = true;
   };
 
   MovingObject.prototype.draw = function (ctx) {
@@ -35,7 +36,11 @@
     var newVelX = this.pos[0] + velX;
     var newVelY = this.pos[1] + velY;
 
-    this.pos = this.game.wrap([newVelX, newVelY]);
+    if (!this.isWrappable && this.game.isOutOfBounds([newVelX, newVelY])) {
+      this.game.removeBullet(this);
+    } else {
+      this.pos = this.game.wrap([newVelX, newVelY]);  
+    }
   };
 
   MovingObject.prototype.isCollidedWith = function (otherObject) {

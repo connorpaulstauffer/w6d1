@@ -6,7 +6,6 @@
     options.color = Ship.COLOR;
     options.vel = [0, 0];
     Asteroids.MovingObject.call(this, options);
-    // some random pos
   };
   Asteroids.Util.inherits(Asteroids.Ship, Asteroids.MovingObject);
 
@@ -15,8 +14,10 @@
     this.vel = [0, 0];
   };
 
-  Ship.prototype.collideWith = function (otherObject) {
-    this.relocate();
+  Ship.prototype.collideWith = function (otherObj) {
+    if (otherObj instanceof (Asteroids.Asteroid)) {
+      this.relocate();
+    }
   };
 
   Ship.prototype.power = function (impulse) {
@@ -25,8 +26,8 @@
   };
 
   Ship.prototype.fireBullet = function () {
-    var bulletVelX = this.vel[0] * 1.3;
-    var bulletVelY = this.vel[1] * 1.3;
+    var bulletVelX = this.vel[0] * 3;
+    var bulletVelY = this.vel[1] * 3;
     var bulletOpts = {
       vel: [bulletVelX, bulletVelY],
       pos: this.pos,
@@ -36,7 +37,7 @@
     this.game.add(new Asteroids.Bullet(bulletOpts));
   };
 
-  Ship.RADIUS = 10;
-  Ship.COLOR = "#994422";
+  Ship.RADIUS = 15;
+  Ship.COLOR = "#0000FF";
 
 })();
